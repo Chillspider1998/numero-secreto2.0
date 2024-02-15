@@ -10,6 +10,7 @@
 
 // criando funcao com parametros
 let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
 
 function exibirTexto(tag, texto) {
     let campo = document.querySelector(tag);
@@ -22,7 +23,19 @@ exibirTexto('p', 'Escolha um número entre 1 e 10');
 // no arquivo html o nome da nossa funcao eh 'verificarChute', logo, devemos cria-la aqui com o mesmo nome
 function verificarChute() {
     let chute = document.querySelector('input').value; //estamos pegando o valor digitado dentro do input do html
-    console.log(chute == numeroSecreto);
+    if (chute == numeroSecreto) {
+        exibirTexto('h1', 'Acertou!');
+        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
+        let mensagemTentativas = `Você descobriu o numero secreto com ${tentativas} ${palavraTentativa}!`;
+        exibirTexto('p', mensagemTentativas);
+    }else {
+        if (chute > numeroSecreto) {
+            exibirTexto('p', 'O numero secreto e menor.');
+        }else {
+            exibirTexto('p', 'O numero secreto e maior');
+        }
+        tentativas++;
+    }
 }
 
 function gerarNumeroAleatorio () {
