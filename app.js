@@ -9,6 +9,8 @@
 // paragrafo.innerHTML = 'Escolha um número entre 1 e 10';
 
 // criando funcao com parametros
+let numerosSorteados = [];
+let tamanhoMaximoNumerosSorteados = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 mensagemInicial();
@@ -46,7 +48,20 @@ function verificarChute() {
 }
 
 function gerarNumeroAleatorio () {
-   return parseInt(Math.random() * 10 + 1);
+    let numeroEscolhido =  parseInt(Math.random() * tamanhoMaximoNumerosSorteados + 1);
+
+    let qtdNumerosLista = numerosSorteados.length;
+    if (qtdNumerosLista == tamanhoMaximoNumerosSorteados) {
+        numerosSorteados = [];
+    }
+
+    if (numerosSorteados.includes(numeroEscolhido)) { // o metodo includes() verifica se algo esta contido na lista
+        return gerarNumeroAleatorio();
+    } else {
+        numerosSorteados.push(numeroEscolhido); // o metodo push() insere um valor dentro da lista
+        console.log(numerosSorteados);
+        return numeroEscolhido;
+    }
 }
 
 //funcao que limpa o input sempre que o usuario realiza uma tentativa
