@@ -18,6 +18,7 @@ mensagemInicial();
 function exibirTexto(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Male', {rate:1.2});
 }
 //funcao que exibe as mensagens iniciais 
 function mensagemInicial() {
@@ -38,9 +39,9 @@ function verificarChute() {
         document.getElementById('reiniciar').removeAttribute('disabled');
     }else {
         if (chute > numeroSecreto) {
-            exibirTexto('p', 'O numero secreto e menor.');
+            exibirTexto('p', 'O numero secreto é menor.');
         }else {
-            exibirTexto('p', 'O numero secreto e maior');
+            exibirTexto('p', 'O numero secreto é maior');
         }
         tentativas++;
         limparCampo();
